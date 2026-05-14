@@ -20,7 +20,7 @@ export function GridBg({ mx = 0, my = 0 }) {
             <path
               d="M60 0L0 0 0 60"
               fill="none"
-              stroke="rgba(79,126,255,0.045)"
+              stroke="rgba(255,122,0,0.04)"
               strokeWidth="0.5"
             />
           </pattern>
@@ -44,7 +44,7 @@ export function GridBg({ mx = 0, my = 0 }) {
           width: "900px",
           height: "600px",
           background:
-            "radial-gradient(ellipse,rgba(79,126,255,0.065) 0%,transparent 65%)",
+            "radial-gradient(ellipse,rgba(255,122,0,0.065) 0%,transparent 65%)",
           pointerEvents: "none",
           willChange: "transform",
         }}

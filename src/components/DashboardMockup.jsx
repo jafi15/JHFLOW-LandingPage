@@ -83,7 +83,7 @@ export function DashboardMockup({ mx = 0, my = 0 }) {
               gap: "10px",
               padding: "9px 14px",
               borderBottom: ".5px solid rgba(255,255,255,.025)",
-              background: g ? "rgba(79,126,255,0.025)" : "transparent",
+              background: g ? "rgba(255,122,0,0.025)" : "transparent",
             }}
           >
             <div
@@ -91,7 +91,7 @@ export function DashboardMockup({ mx = 0, my = 0 }) {
                 width: "26px",
                 height: "26px",
                 borderRadius: "6px",
-                background: "rgba(79,126,255,0.09)",
+                background: "rgba(255,122,0,0.08)",
                 flexShrink: 0,
               }}
             />
@@ -120,7 +120,7 @@ export function DashboardMockup({ mx = 0, my = 0 }) {
                 height: "18px",
                 borderRadius: "100px",
                 background: g
-                  ? "rgba(79,126,255,0.18)"
+                  ? "rgba(255,122,0,0.14)"
                   : "rgba(255,255,255,0.04)",
                 flexShrink: 0,
               }}
@@ -137,8 +137,8 @@ export function DashboardMockup({ mx = 0, my = 0 }) {
           top: "48px",
           width: "190px",
           borderRadius: "12px",
-          background: "rgba(15,15,22,0.88)",
-          border: ".5px solid rgba(79,126,255,0.18)",
+          background: "rgba(15,10,5,0.90)",
+          border: ".5px solid rgba(255,122,0,0.18)",
           padding: "18px 20px",
           transform: `perspective(1400px) rotateY(-9deg) rotateX(3.5deg) translate3d(${
             mx * 5
@@ -202,7 +202,7 @@ export function DashboardMockup({ mx = 0, my = 0 }) {
                 flex: 1,
                 height: `${h}%`,
                 borderRadius: "2px 2px 0 0",
-                background: i === 5 ? C.accent : "rgba(79,126,255,0.2)",
+                background: i === 5 ? C.accent : "rgba(255,122,0,0.18)",
               }}
             />
           ))}
@@ -216,8 +216,8 @@ export function DashboardMockup({ mx = 0, my = 0 }) {
           right: "30px",
           bottom: "44px",
           borderRadius: "10px",
-          background: "rgba(11,20,46,0.92)",
-          border: ".5px solid rgba(79,126,255,0.28)",
+          background: "rgba(18,8,0,0.92)",
+          border: ".5px solid rgba(255,122,0,0.28)",
           padding: "11px 15px",
           display: "flex",
           alignItems: "center",
@@ -238,7 +238,7 @@ export function DashboardMockup({ mx = 0, my = 0 }) {
             width: "26px",
             height: "26px",
             borderRadius: "50%",
-            background: "rgba(79,126,255,0.18)",
+            background: "rgba(255,122,0,0.15)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

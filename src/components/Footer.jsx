@@ -23,7 +23,7 @@ export function Footer() {
           letterSpacing: ".04em",
         }}
       >
-        JHFLOW
+        TigerFlow
       </div>
       <div style={{ display: "flex", gap: "28px", flexWrap: "wrap" }}>
         {["Impressum", "Datenschutz", "AGB"].map((l) => (
@@ -44,7 +44,7 @@ export function Footer() {
         ))}
       </div>
       <div style={{ fontSize: "12px", color: C.textDis }}>
-        © 2025 JHFLOW. Alle Rechte vorbehalten.
+        © 2026 TigerFlow. Alle Rechte vorbehalten.
       </div>
     </footer>
   );

@@ -6,8 +6,8 @@ export function ExpertNote() {
   return (
     <section className="sec" style={{ padding: "120px 48px", background: C.pageBg, position: "relative", overflow: "hidden" }}>
       {/* Decorative Orbs */}
-      <div style={{ position: "absolute", top: "20%", left: "10%", width: "300px", height: "300px", background: "radial-gradient(circle, rgba(79,126,255,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", bottom: "10%", right: "5%", width: "400px", height: "400px", background: "radial-gradient(circle, rgba(79,126,255,0.03) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: "20%", left: "10%", width: "300px", height: "300px", background: "radial-gradient(circle, rgba(255,122,0,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", bottom: "10%", right: "5%", width: "400px", height: "400px", background: "radial-gradient(circle, rgba(255,122,0,0.03) 0%, transparent 70%)", pointerEvents: "none" }} />
 
       <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 1 }}>
         <div style={{ color: C.accent, marginBottom: "32px", display: "flex", justifyContent: "center" }}>
@@ -21,8 +21,8 @@ export function ExpertNote() {
         </blockquote>
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
-          <div style={{ width: "64px", height: "64px", borderRadius: "50%", background: `linear-gradient(135deg, ${C.accent} 0%, ${C.accentHov} 100%)`, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 600, fontSize: "20px", boxShadow: "0 8px 24px rgba(79,126,255,0.3)" }}>
-            JH
+          <div style={{ width: "64px", height: "64px", borderRadius: "50%", background: `linear-gradient(135deg, ${C.accent} 0%, ${C.accentHov} 100%)`, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 600, fontSize: "20px", boxShadow: "0 8px 24px rgba(255,122,0,0.3)" }}>
+            TF
           </div>
           <div style={{ textAlign: "center" }}>
             <div style={{ color: C.textPri, fontWeight: 600, fontSize: "16px" }}>Jan-Hendrik Flow</div>

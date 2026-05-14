@@ -29,7 +29,7 @@ export function Navbar({ scrolled }) {
           letterSpacing: ".04em",
         }}
       >
-        JHFLOW
+        TigerFlow
       </div>
       <div
         className="hide-mobile"

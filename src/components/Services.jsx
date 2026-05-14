@@ -14,8 +14,8 @@ export function Services() {
     {
       icon: "◉",
       title: "AI Chatbots",
-      sub: "24/7 Qualifizierung",
-      body: "Intelligente Chatbots, die qualifizieren, antworten und buchen — ohne menschliches Intervention bei Standardanfragen.",
+      sub: "TigerBot — 24/7",
+      body: "TigerBot qualifiziert, antwortet und bucht — rund um die Uhr, ohne menschliche Intervention bei Standardanfragen.",
     },
     {
       icon: "◎",

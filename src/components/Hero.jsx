@@ -16,7 +16,7 @@ export function Hero() {
   const mouse = useMouseParallax(1);
   const services = [
     "Webdesign",
-    "AI Chatbots",
+    "TigerBot",
     "Voice Agents",
     "CRM",
     "Automations",
@@ -72,7 +72,7 @@ export function Hero() {
                 background: C.accent,
               }}
             />
-            JHFLOW · AI Systems & Webdesign
+            TigerFlow · AI Systems & Automation
           </span>
         </div>
 

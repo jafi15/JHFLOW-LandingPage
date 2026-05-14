@@ -74,7 +74,7 @@ export function ComparisonSlider() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(135deg, #0D1838 0%, #111117 100%)",
+            background: "linear-gradient(135deg, #1A0800 0%, #111111 100%)",
             clipPath: `inset(0 0 0 ${sliderPosition}%)`,
           }}
         >

@@ -11,9 +11,9 @@ html {
 }
 
 body {
-  background: #0B0B0F;
+  background: #070707;
   overflow-x: hidden;
-  color: #F0F0F2;
+  color: #F8F5EF;
   font-family: 'Inter', -apple-system, sans-serif;
 }
 
@@ -55,7 +55,7 @@ body {
 }
 
 .nav-link:hover {
-  color: #F0F0F2;
+  color: #F8F5EF;
 }
 
 .card-hover {
@@ -63,9 +63,9 @@ body {
 }
 
 .card-hover:hover {
-  border-color: #4F7EFF !important;
+  border-color: #FF7A00 !important;
   transform: translateY(-2px);
-  box-shadow: 0 12px 36px rgba(0,0,0,.5), 0 1px 0 rgba(255,255,255,.05) inset;
+  box-shadow: 0 12px 36px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.05) inset;
 }
 
 .cta-btn {
@@ -73,8 +73,8 @@ body {
 }
 
 .cta-btn:hover {
-  background: #3D6CEE !important;
-  box-shadow: 0 0 0 4px rgba(79,126,255,.14);
+  background: #E85D04 !important;
+  box-shadow: 0 0 0 4px rgba(255,122,0,.18);
 }
 
 .stat-card {
@@ -93,7 +93,7 @@ body {
   top: 44px;
   bottom: -24px;
   width: .5px;
-  background: linear-gradient(to bottom, #2A2A35, transparent);
+  background: linear-gradient(to bottom, #2A2A2A, transparent);
 }
 
 @media(prefers-reduced-motion:reduce) {
