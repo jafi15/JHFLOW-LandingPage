@@ -4,23 +4,22 @@ import { GridBg } from "./GridBg";
 import { DashboardMockup } from "./DashboardMockup";
 
 const TYPED_WORDS = [
-  "AI-Chatbots.",
-  "Voice Agents.",
-  "CRM-Systeme.",
-  "Workflows.",
-  "Webdesign.",
+  "Systeme, die jagen.",
+  "Systeme, die qualifizieren.",
+  "Systeme, die skalieren.",
+  "Systeme, die schneller verkaufen.",
 ];
 
 export function Hero() {
   const { display, done } = useTyped(TYPED_WORDS);
   const mouse = useMouseParallax(1);
   const services = [
-    "Webdesign",
     "TigerBot",
     "Voice Agents",
     "CRM",
-    "Automations",
-    "Lead-Systeme",
+    "Automation",
+    "Lead Engine",
+    "Webdesign",
   ];
 
   return (
@@ -80,8 +79,9 @@ export function Hero() {
           className="fu1 hero-h1"
           style={{
             fontSize: "clamp(40px,6vw,70px)",
-            fontWeight: 500,
-            letterSpacing: "-.035em",
+            fontFamily: "'Space Grotesk','Inter',-apple-system,sans-serif",
+            fontWeight: 600,
+            letterSpacing: "-.02em",
             lineHeight: 1.01,
             color: C.textPri,
             marginBottom: "2px",
@@ -93,8 +93,9 @@ export function Hero() {
           className="fu2 hero-h1"
           style={{
             fontSize: "clamp(40px,6vw,70px)",
-            fontWeight: 500,
-            letterSpacing: "-.035em",
+            fontFamily: "'Space Grotesk','Inter',-apple-system,sans-serif",
+            fontWeight: 600,
+            letterSpacing: "-.02em",
             lineHeight: 1.01,
             color: C.textPri,
             minHeight: "1.06em",
@@ -131,8 +132,8 @@ export function Hero() {
             marginBottom: "40px",
           }}
         >
-          Automatisierung, die verkauft. Systeme, die arbeiten —<br />
-          auch wenn Sie es nicht tun.
+          TigerFlow automatisiert Leads, Anfragen und Prozesse —<br />
+          mit TigerBot, Voice Agents und Systemen, die rund um die Uhr arbeiten.
         </p>
 
         <div className="fu4">
@@ -175,7 +176,7 @@ export function Hero() {
               fontWeight: 500,
             }}
           >
-            Bereiche
+            TigerFlow Ecosystem
           </span>
           {services.map((s) => (
             <span
@@ -187,7 +188,7 @@ export function Hero() {
                   width: "3px",
                   height: "3px",
                   borderRadius: "50%",
-                  background: "#1E1E28",
+                  background: C.borderEm,
                 }}
               />
               <span style={{ fontSize: "12px", color: C.textTer }}>{s}</span>

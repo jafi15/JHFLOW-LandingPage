@@ -31,8 +31,18 @@ export function GridBg({ mx = 0, my = 0 }) {
           <mask id="gmask">
             <rect width="100%" height="100%" fill="url(#gfade)" />
           </mask>
+          <pattern
+            id="tigerStripes"
+            width="80"
+            height="80"
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(52)"
+          >
+            <rect x="0" y="0" width="12" height="80" fill="rgba(255,122,0,0.022)" />
+          </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#grid)" mask="url(#gmask)" />
+        <rect width="100%" height="100%" fill="url(#tigerStripes)" mask="url(#gmask)" />
       </svg>
       {/* Mouse-reactive ambient glow */}
       <div
@@ -59,6 +69,26 @@ export function GridBg({ mx = 0, my = 0 }) {
           pointerEvents: "none",
         }}
       />
+      {/* Flow Lines — subtle data stream */}
+      {[
+        { top: "32%", width: "100px", dur: "7.5s", delay: "0s",   opacity: 0.12 },
+        { top: "61%", width: "75px",  dur: "9.2s", delay: "3.1s", opacity: 0.09 },
+      ].map((line, i) => (
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            top: line.top,
+            left: 0,
+            height: "1px",
+            width: line.width,
+            borderRadius: "1px",
+            background: `linear-gradient(to right, transparent, rgba(255,122,0,${line.opacity}), transparent)`,
+            animation: `flowDrift ${line.dur} ease-in-out ${line.delay} infinite`,
+            pointerEvents: "none",
+          }}
+        />
+      ))}
     </div>
   );
 }

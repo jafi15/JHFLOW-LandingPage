@@ -1,8 +1,9 @@
 # Implementation Plan: Hero Brand DNA — TigerFlow
 
-> **Status:** Entwurf — warte auf Freigabe  
+> **Status:** Entwurf v2 — warte auf Freigabe  
 > **Erstellt:** 2026-05-14  
-> **Scope:** Hero-Section, Typografie (Headlines), GridBg (Brand DNA)  
+> **Aktualisiert:** 2026-05-14 (Anpassungen: Font-Scope, Copy, Flow-Linien)  
+> **Scope:** Hero-Section, Typografie (nur Hero-Elemente), GridBg (Brand DNA)  
 > **Ausführung:** ERST nach expliziter Freigabe
 
 ---
@@ -11,17 +12,17 @@
 
 | Datei | Änderungstyp |
 |---|---|
-| `src/index.css` | Google Font Import + neue Keyframe-Animation + headline CSS-Regel |
-| `src/components/Hero.jsx` | Copy (Headline, Subline, Microcopy), Typed Words, font-weight/spacing |
-| `src/components/GridBg.jsx` | Tiger-Streifen-SVG-Pattern + Flow-Linien (neue Div-Elemente) |
+| `src/index.css` | Google Font Import erweitern + neue `@keyframes flowDrift` |
+| `src/components/Hero.jsx` | Copy (Subline, Microcopy, Typed Words), fontFamily/weight/spacing auf 2 Elemente |
+| `src/components/GridBg.jsx` | Tiger-Streifen-SVG-Pattern + 2 Flow-Linien (neue Div-Elemente) |
 
-**Nicht angefasst:** `App.jsx`, `theme.js`, `DashboardMockup.jsx`, alle anderen Sections, alle Hooks, alle Animationen
+**Nicht angefasst:** `App.jsx`, `theme.js`, `DashboardMockup.jsx`, alle anderen Sections, alle Hooks, alle bestehenden Animationen, alle anderen Überschriften außerhalb des Hero
 
 ---
 
 ## 2. Font-Änderungen
 
-### Google Font Import (`src/index.css`, Zeile 1)
+### 2a. Google Font Import (`src/index.css`, Zeile 1)
 
 **Aktuell:**
 ```css
@@ -33,29 +34,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Space+Grotesk:wght@500;600;700&display=swap');
 ```
 
-> Nur ein HTTP-Request statt zwei. Space Grotesk wird nur für Weights 500, 600, 700 geladen — ausreichend für Headlines.
+> Nur ein HTTP-Request statt zwei. Space Grotesk Weights 500/600/700 — ausreichend für Headlines.
 
-### Headline-CSS-Regel (neu, `src/index.css`)
+---
 
-**Einfügen nach dem `body`-Block:**
-```css
-h1, h2, h3 {
-  font-family: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
-}
-```
+### 2b. Anwendung: NUR Hero H1 und Typing-Div (Hero.jsx)
 
-Dieser eine Selektor deckt alle Headlines site-weit ab — keine per-Komponenten-Änderung nötig. Inter bleibt als Fallback.
+**⚠ Keine globale CSS-Regel. Keine `h1, h2, h3`-Selektor-Änderung.**
 
-### Anpassungen in `Hero.jsx` durch Font-Wechsel
+Space Grotesk wird **ausschließlich via `fontFamily` Inline-Style** auf genau zwei Elemente in `Hero.jsx` angewendet:
 
-Space Grotesk hat eine eigene optische Stärke — bei direktem Font-Swap müssen zwei Werte angepasst werden, damit die Headline weiterhin kräftig und kantig wirkt:
+- Das `<h1>`-Element (statische Zeile "Wir bauen")
+- Das `<div>` mit dem animierten Typing-Text
 
-| Property | Aktueller Wert (Inter) | Neuer Wert (Space Grotesk) | Grund |
+Alle anderen Überschriften im Projekt bleiben unverändert in Inter.
+
+**Anpassungen in `Hero.jsx` durch Font-Wechsel:**
+
+| Property | Aktueller Wert | Neuer Wert | Grund |
 |---|---|---|---|
-| `fontWeight` (h1 + typed div) | `500` | `600` | Space Grotesk 500 wirkt leichter als Inter 500; 600 gibt den gewünschten "kräftigen" Eindruck |
+| `fontFamily` (h1 + typed div) | *(nicht gesetzt → Inter aus body)* | `"'Space Grotesk','Inter',-apple-system,sans-serif"` | Font gezielt auf Hero-Headlines beschränken |
+| `fontWeight` (h1 + typed div) | `500` | `600` | Space Grotesk 500 wirkt leichter als Inter 500; 600 liefert den gewünschten kräftigen Eindruck |
 | `letterSpacing` (h1 + typed div) | `"-.035em"` | `"-.02em"` | Space Grotesk hat von Haus aus engere Geometrie; weniger negatives Tracking hält die Lesbarkeit |
 
-Beide Werte betreffen die `style`-Props direkt am `<h1>` (Zeile 82–88) und dem `<div>` mit der Typing-Animation (Zeile 94–104).
+Alle drei Properties werden als Ergänzung in die bestehenden `style`-Objekte eingetragen — kein Umbau der Elemente nötig.
 
 ---
 
@@ -63,17 +65,12 @@ Beide Werte betreffen die `style`-Props direkt am `<h1>` (Zeile 82–88) und dem
 
 ### 3a. Headline — Statische Zeile (Hero.jsx, Zeile 90)
 
-**Aktuell:**
+**Bleibt unverändert:**
 ```
 Wir bauen
 ```
 
-**Neu:**
-```
-AI-Systeme,
-```
-
-Die Zeile dient als grammatikalischer Einstieg für den folgenden Typed-Teil ("AI-Systeme, die schneller verkaufen.").
+Die Zeile "Wir bauen" ist der grammatikalische Einstieg. Die Typing-Wörter setzen den Satz fort: *"Wir bauen / Systeme, die jagen."* — das funktioniert als vollständige Aussage.
 
 ---
 
@@ -93,14 +90,14 @@ const TYPED_WORDS = [
 **Neu:**
 ```js
 const TYPED_WORDS = [
-  "die nie schlafen.",
-  "die qualifizieren.",
-  "die skalieren.",
-  "die schneller verkaufen.",
+  "Systeme, die jagen.",
+  "Systeme, die qualifizieren.",
+  "Systeme, die skalieren.",
+  "Systeme, die schneller verkaufen.",
 ];
 ```
 
-> **Wichtig:** Das letzte Wort (`"die schneller verkaufen."`) bleibt permanent auf dem Bildschirm, weil der `useTyped`-Hook bei `wi === words.length - 1` stoppt und `done` auf `true` setzt. Der Cursor blinkt bis dahin und verschwindet dann. Das ist Absicht — die stärkste Aussage bleibt stehen.
+> **Wichtig:** Das letzte Wort (`"Systeme, die schneller verkaufen."`) bleibt permanent auf dem Bildschirm, weil der `useTyped`-Hook bei `wi === words.length - 1` stoppt und `done` auf `true` setzt. Der Cursor blinkt bis dahin und verschwindet. Die stärkste Aussage bleibt stehen. Der Haken (useTyped) wird **nicht verändert**.
 
 ---
 
@@ -118,7 +115,7 @@ TigerFlow automatisiert Leads, Anfragen und Prozesse —
 mit TigerBot, Voice Agents und Systemen, die rund um die Uhr arbeiten.
 ```
 
-Technische Anmerkung: Das `<br />` zwischen den Zeilen bleibt bestehen. `maxWidth: "420px"` passt zur neuen Länge (geprüft: ~400px bei 17px/Inter 300).
+Das `<br />` zwischen den Zeilen bleibt bestehen. `maxWidth: "420px"` passt zur neuen Länge (geprüft: ~400px bei 17px/Inter 300).
 
 ---
 
@@ -162,7 +159,7 @@ Technische Anmerkung: Das `<br />` zwischen den Zeilen bleibt bestehen. `maxWidt
 
 ### 3f. Trenn-Punkt-Farbe (Hero.jsx, Zeile 191)
 
-**Aktuell (hardcoded alter Wert):**
+**Aktuell (hardcoded alter Wert aus altem Brand):**
 ```jsx
 background: "#1E1E28"
 ```
@@ -172,7 +169,7 @@ background: "#1E1E28"
 background: C.borderEm
 ```
 
-Kleiner Fix: Der Separator-Dot referenziert noch einen hardcodierten Blau-Tint-Wert aus dem alten Brand. `C.borderEm` (`#2A2A2A`) ist der korrekte neutrale Wert.
+`C.borderEm` (`#2A2A2A`) ist der korrekte neutrale Wert aus der TigerFlow-Palette.
 
 ---
 
@@ -180,18 +177,18 @@ Kleiner Fix: Der Separator-Dot referenziert noch einen hardcodierten Blau-Tint-W
 
 ### 4a. Tiger-Streifen-Pattern (`GridBg.jsx`)
 
-**Methode:** Zweites SVG-Pattern direkt in der bestehenden `<svg>`-Struktur von GridBg.
+**Methode:** Zweites SVG-Pattern direkt in der bestehenden `<svg>`-Struktur von GridBg — keine neue Komponente.
 
-**Was wird hinzugefügt:** Ein `<pattern id="tigerStripes">` mit diagonalen Linien + ein `<rect>` der dieses Pattern mit derselben Maske (`url(#gmask)`) rendert wie das Grid.
+**Was wird hinzugefügt:** Ein `<pattern id="tigerStripes">` mit diagonalen Streifen + ein `<rect>` der dieses Pattern mit derselben Maske (`url(#gmask)`) rendert wie das bestehende Grid.
 
 **Visuelles Ergebnis:**
 - Diagonale Streifen bei 52°-Winkel (leicht steiler als 45° für Tiger-Optik)
-- Streifenbreite: 12px, Abstand: 68px (breite Streifen → authentischer Tiger-Look)
-- Farbe: `rgba(255,122,0,0.022)` — kaum wahrnehmbar, bei direktem Hinsehen sichtbar
+- Streifenbreite: 12px, Abstand: 68px (breite, ruhige Streifen → kein Zebra-Look)
+- Farbe: `rgba(255,122,0,0.022)` — kaum wahrnehmbar, bei direktem Hinsehen subtil sichtbar
 - Dieselbe radiale Mask wie Grid → Streifen faden zu Rändern aus
-- Kein JS, keine Animation — rein dekorativ
+- Kein JS, keine Animation — rein dekorativ, kein Performance-Einfluss
 
-**SVG-Additions innerhalb `<defs>`:**
+**SVG-Addition innerhalb `<defs>` (nach dem bestehenden `<mask>`-Block):**
 ```svg
 <pattern
   id="tigerStripes"
@@ -204,39 +201,40 @@ Kleiner Fix: Der Separator-Dot referenziert noch einen hardcodierten Blau-Tint-W
 </pattern>
 ```
 
-**Neues `<rect>` direkt nach dem Grid-Rect:**
+**Neues `<rect>` direkt nach dem Grid-Rect (vor schließendem `</svg>`):**
 ```svg
 <rect width="100%" height="100%" fill="url(#tigerStripes)" mask="url(#gmask)" />
 ```
 
-> Das Pattern liegt unter dem Glow und über dem Grid — Schichtung: Grid → Streifen → Glow → Vignette.
+> Schichtung von unten nach oben: Grid → **Streifen** → Glow → Vignette. Alles maskengesteuert, kein neues Stacking-Context-Problem.
 
 ---
 
 ### 4b. Flow-Linien — Animierte Datenstrahlen (`GridBg.jsx`)
 
-**Methode:** 3 absolut positionierte `<div>`-Elemente nach dem bestehenden Bottom-Vignette-Div. Neue CSS-Keyframe-Animation `@keyframes flowDrift` in `index.css`.
+**Methode:** **2** absolut positionierte `<div>`-Elemente nach dem bestehenden Bottom-Vignette-Div. Neue CSS-Keyframe-Animation `@keyframes flowDrift` in `index.css`.
 
-**Zweck:** Horizontale Datenstrom-Optik, die von links in Richtung Dashboard (rechts) fließt. Subtil, schnell, premium.
+**Design-Ziel:** Sehr subtile, langsam fließende horizontale Linien — Datenstrom-Ästhetik, kein Cyber-Look.
 
-**Neue Keyframe-Animation (neu in `src/index.css`, nach dem `@keyframes floatB`-Block):**
+**Neue Keyframe-Animation (in `src/index.css`, nach dem `@keyframes floatB`-Block):**
 ```css
 @keyframes flowDrift {
-  0%   { transform: translateX(-100%); opacity: 0; }
-  10%  { opacity: 1; }
-  85%  { opacity: 1; }
+  0%   { transform: translateX(-140px); opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
   100% { transform: translateX(100vw); opacity: 0; }
 }
 ```
 
-**3 Flow-Line-Divs (neue Elemente in GridBg.jsx, nach dem Vignette-Div):**
+> Langsamer Einblende-Übergang (12% statt 10%) für sanfteres Erscheinen. Die Linie blendet behutsam ein und aus — kein harter Blitz.
+
+**2 Flow-Line-Divs (nach dem Vignette-Div in GridBg.jsx):**
 
 ```jsx
-{/* Flow Lines — Data stream toward dashboard */}
+{/* Flow Lines — subtle data stream, premium SaaS */}
 {[
-  { top: "28%", width: "120px", dur: "4.2s", delay: "0s",   opacity: 0.22 },
-  { top: "52%", width: "80px",  dur: "5.8s", delay: "1.4s", opacity: 0.15 },
-  { top: "68%", width: "100px", dur: "3.9s", delay: "2.7s", opacity: 0.18 },
+  { top: "32%", width: "100px", dur: "7.5s", delay: "0s",   opacity: 0.12 },
+  { top: "61%", width: "75px",  dur: "9.2s", delay: "3.1s", opacity: 0.09 },
 ].map((line, i) => (
   <div
     key={i}
@@ -244,7 +242,7 @@ Kleiner Fix: Der Separator-Dot referenziert noch einen hardcodierten Blau-Tint-W
       position: "absolute",
       top: line.top,
       left: 0,
-      height: "1.5px",
+      height: "1px",
       width: line.width,
       borderRadius: "1px",
       background: `linear-gradient(to right, transparent, rgba(255,122,0,${line.opacity}), transparent)`,
@@ -255,34 +253,39 @@ Kleiner Fix: Der Separator-Dot referenziert noch einen hardcodierten Blau-Tint-W
 ))}
 ```
 
-**Visuelles Ergebnis:**
-- 3 schmale Linien in unterschiedlichen Höhen, die intermittierend durchs Bild fließen
-- Ausgeblendet an Rändern (gradient fade), nur der mittlere Teil leuchtet kurz auf
-- Versetzt durch `delay` — wirkt organisch, nicht maschinell
-- Keine Interferenz mit Mouse-Parallax, da keine `willChange`-Optimierung nötig
+**Unterschied zu v1 des Plans:**
+
+| Eigenschaft | Version 1 (verworfen) | Version 2 (aktuell) |
+|---|---|---|
+| Anzahl Linien | 3 | **2** |
+| Opacity Linie 1 | 0.22 | **0.12** |
+| Opacity Linie 2 | 0.15 | **0.09** |
+| Geschwindigkeit | 3.9–5.8s | **7.5–9.2s** |
+| Linienhöhe | 1.5px | **1px** |
+
+> Bewusst gewählte Werte: Die Linien sollen spürbar sein, nicht gesehen werden. Bei kurzen Blicken kaum wahrnehmbar — bei längerem Betrachten entfalten sie Tiefe.
 
 ---
 
 ## 5. Zusammenfassung aller Änderungen
 
-| # | Datei | Zeile(n) | Beschreibung |
-|---|---|---|---|
-| 1 | `src/index.css` | 1 | Google Font: Space Grotesk hinzufügen |
-| 2 | `src/index.css` | ~19 (nach body) | CSS-Regel `h1, h2, h3 { font-family: Space Grotesk... }` |
-| 3 | `src/index.css` | ~48 (nach floatB) | Neue `@keyframes flowDrift` Animation |
-| 4 | `src/components/Hero.jsx` | 6–12 | `TYPED_WORDS` — neue Phrasen, 4 statt 5 Wörter |
-| 5 | `src/components/Hero.jsx` | 17–24 | `services`-Array — neue Reihenfolge & Namen |
-| 6 | `src/components/Hero.jsx` | 82–88 | h1: `fontWeight 500→600`, `letterSpacing -.035→-.02em` |
-| 7 | `src/components/Hero.jsx` | 90 | h1-Text: `"Wir bauen"` → `"AI-Systeme,"` |
-| 8 | `src/components/Hero.jsx` | 94–104 | typed div: `fontWeight 500→600`, `letterSpacing -.035→-.02em` |
-| 9 | `src/components/Hero.jsx` | 134–135 | Subline Text ersetzen (TigerBot-Mention) |
-| 10 | `src/components/Hero.jsx` | 178 | Label `"Bereiche"` → `"TigerFlow Ecosystem"` |
-| 11 | `src/components/Hero.jsx` | 191 | Separator-Dot: `"#1E1E28"` → `C.borderEm` |
-| 12 | `src/components/GridBg.jsx` | in `<defs>` | Tiger-Streifen-Pattern (`id="tigerStripes"`) hinzufügen |
-| 13 | `src/components/GridBg.jsx` | nach Grid-Rect | `<rect fill="url(#tigerStripes)" mask="..."/>` hinzufügen |
-| 14 | `src/components/GridBg.jsx` | nach Vignette-Div | 3 Flow-Line-Divs mit `flowDrift`-Animation |
+| # | Datei | Beschreibung |
+|---|---|---|
+| 1 | `src/index.css` | Google Font @import: Space Grotesk hinzufügen |
+| 2 | `src/index.css` | Neue `@keyframes flowDrift` (nach floatB-Block) |
+| 3 | `src/components/Hero.jsx` | `TYPED_WORDS`: 4 neue "Wir bauen …"-Phrasen |
+| 4 | `src/components/Hero.jsx` | `services`-Array: neue Reihenfolge & Namen |
+| 5 | `src/components/Hero.jsx` | h1: `fontFamily` Space Grotesk, `fontWeight 500→600`, `letterSpacing -.035→-.02em` |
+| 6 | `src/components/Hero.jsx` | typed div: `fontFamily` Space Grotesk, `fontWeight 500→600`, `letterSpacing -.035→-.02em` |
+| 7 | `src/components/Hero.jsx` | Subline Text ersetzen (TigerBot-Mention) |
+| 8 | `src/components/Hero.jsx` | Label `"Bereiche"` → `"TigerFlow Ecosystem"` |
+| 9 | `src/components/Hero.jsx` | Separator-Dot: `"#1E1E28"` → `C.borderEm` |
+| 10 | `src/components/GridBg.jsx` | Tiger-Streifen-Pattern in SVG `<defs>` einfügen |
+| 11 | `src/components/GridBg.jsx` | `<rect fill="url(#tigerStripes)" mask="..."/>` nach Grid-Rect |
+| 12 | `src/components/GridBg.jsx` | 2 Flow-Line-Divs mit `flowDrift`-Animation |
 
-**Summe: 14 Änderungen in 3 Dateien.** Keine Änderungen an Komponenten-Struktur, Hooks, Layouts, oder anderen Sections.
+**Summe: 12 Änderungen in 3 Dateien.**  
+Kein neues Component. Kein Hook-Eingriff. Keine Layout-Änderung. Keine anderen Sections berührt.
 
 ---
 
@@ -290,13 +293,12 @@ Kleiner Fix: Der Separator-Dot referenziert noch einen hardcodierten Blau-Tint-W
 
 | Risiko | Wahrscheinlichkeit | Maßnahme |
 |---|---|---|
-| **Space Grotesk lädt nicht** (offline, Firewall) | Niedrig | Inter greift als Fallback — kein Layout-Break |
-| **`fontWeight: 600` wirkt zu fett** bei kleinen Screen-Größen | Mittel | Per `clamp` skaliert die Schriftgröße bereits — 600 sollte auf allen Größen gut aussehen. Ggf. in Mobile-Media-Query auf 500 zurückfallen |
-| **`TYPED_WORDS` Länge** — "die schneller verkaufen." (28 Zeichen) könnte bei ~40px Schriftgröße umbrechen | Niedrig | `minHeight: "1.06em"` hält die Zeile offen; einzeiliges Typing ist durch `flex` + `baseline`-Alignment gesichert. Mobile: `clamp(32px,9vw,48px)` — Test empfohlen |
-| **flowDrift läuft auf `prefers-reduced-motion`** | Niedrig | `index.css` hat bereits `@media(prefers-reduced-motion:reduce){ animation-duration: .01ms !important }` — Flow-Linien werden automatisch deaktiviert |
-| **Tiger-Streifen zu sichtbar** bei bestimmten Bildschirmhelligkeit | Niedrig | Opacity `0.022` ist sehr zurückhaltend. Falls in helleren Umgebungen zu stark: auf `0.015` reduzieren |
-| **`h1, h2, h3` CSS-Regel** ändert Font site-weit | Mittel | Space Grotesk ist als Headline-Font designed und kompatibel mit allen Abschnitten. Visuell kein Risiko — aber alle Section-Überschriften h2 nehmen die neue Schrift an. Das ist im Sinne eines kohärenten Rebrandings erwünscht, sollte aber im Browser vollständig geprüft werden. |
-| **SVG `patternTransform="rotate(52)"`** — Browser-Kompatibilität | Sehr niedrig | SVG2 Standard, alle modernen Browser unterstützen `patternTransform` |
+| **Space Grotesk lädt nicht** (offline, Firewall) | Niedrig | Inter greift als Fallback — kein Layout-Break, da Fallback in `fontFamily`-String gesetzt |
+| **`fontWeight: 600` wirkt zu fett** bei kleinen Screens | Niedrig–Mittel | `clamp` skaliert Schriftgröße automatisch; falls nötig, nur im Hero-Bereich in der Mobile-Media-Query auf 500 zurückfallen |
+| **"Systeme, die schneller verkaufen."** (34 Zeichen) bricht bei ~40px auf 2 Zeilen | Niedrig | `minHeight: "1.06em"` hält die Typing-Zeile offen; flex + baseline-Alignment ist vorhanden. Mobile-Test empfohlen (`clamp` greift ab 768px) |
+| **flowDrift läuft trotz reduced-motion** | Sehr niedrig | `index.css` hat bereits `@media(prefers-reduced-motion:reduce){ animation-duration: .01ms !important }` — Flow-Linien werden automatisch deaktiviert |
+| **Tiger-Streifen zu sichtbar** auf hellen Displays | Sehr niedrig | Opacity `0.022` ist äußerst zurückhaltend. Bei Bedarf auf `0.015` reduzieren |
+| **SVG `patternTransform="rotate(52)"`** — Kompatibilität | Sehr niedrig | SVG2-Standard, alle modernen Browser unterstützen `patternTransform` |
 
 ---
 
@@ -304,24 +306,22 @@ Kleiner Fix: Der Separator-Dot referenziert noch einen hardcodierten Blau-Tint-W
 
 ```
 Schritt 1 — src/index.css
-  1a. Google Font @import: Space Grotesk hinzufügen
-  1b. h1/h2/h3 Font-Regel einfügen (nach body-Block)
-  1c. @keyframes flowDrift einfügen (nach floatB-Block)
+  1a. Google Font @import: Space Grotesk hinzufügen (Zeile 1)
+  1b. @keyframes flowDrift einfügen (nach floatB-Block, ca. Zeile 48)
 
 Schritt 2 — src/components/Hero.jsx
-  2a. TYPED_WORDS ersetzen (4 neue Phrasen)
+  2a. TYPED_WORDS ersetzen (4 neue "Wir bauen …"-Phrasen)
   2b. services-Array aktualisieren (Reihenfolge + Namen)
-  2c. h1 fontWeight + letterSpacing anpassen
-  2d. h1-Text "Wir bauen" → "AI-Systeme,"
-  2e. typed div fontWeight + letterSpacing anpassen
-  2f. Subline Text ersetzen
-  2g. Label "Bereiche" → "TigerFlow Ecosystem"
-  2h. Separator-Dot background: "#1E1E28" → C.borderEm
+  2c. h1-Style: fontFamily + fontWeight 500→600 + letterSpacing -.035→-.02em
+  2d. typed div-Style: fontFamily + fontWeight 500→600 + letterSpacing -.035→-.02em
+  2e. Subline Text ersetzen
+  2f. Label "Bereiche" → "TigerFlow Ecosystem"
+  2g. Separator-Dot background: "#1E1E28" → C.borderEm
 
 Schritt 3 — src/components/GridBg.jsx
-  3a. Tiger-Streifen-Pattern in SVG <defs> einfügen
-  3b. <rect fill="url(#tigerStripes)"> nach Grid-Rect einfügen
-  3c. 3 Flow-Line-Divs nach Vignette-Div einfügen
+  3a. Tiger-Streifen-Pattern in SVG <defs> einfügen (nach <mask>-Block)
+  3b. <rect fill="url(#tigerStripes)" mask="url(#gmask)"/> nach Grid-Rect einfügen
+  3c. 2 Flow-Line-Divs nach Vignette-Div einfügen
 ```
 
 ---
@@ -329,29 +329,32 @@ Schritt 3 — src/components/GridBg.jsx
 ## 8. Browser-Checkliste nach Umsetzung
 
 ### Typografie
-- [ ] Hero h1 rendert in Space Grotesk (erkennbar: eckigere Geometrie, kantiges "G"/"S" im Vergleich zu Inter)
-- [ ] Section-Überschriften h2 (Leistungen, Prozess, Ergebnisse etc.) ebenfalls in Space Grotesk
-- [ ] Fallback Inter greift, wenn Google Fonts deaktiviert (DevTools → Netzwerk → offline)
-- [ ] Mobile (375px): Headline bricht korrekt um, kein Overflow
+- [ ] Hero h1 rendert in Space Grotesk (erkennbar: eckigere Geometrie, kantiges "a"/"s" vs. Inter)
+- [ ] Hero Typing-Zeile rendert in Space Grotesk (identischer Font wie h1)
+- [ ] **Alle anderen Überschriften (h2 in Services, Process, Results etc.) bleiben in Inter — unverändert**
+- [ ] Fallback Inter greift, wenn Google Fonts deaktiviert (DevTools → offline testen)
+- [ ] Mobile (375px): Headline kein Overflow, "Systeme, die schneller verkaufen." einzeilig oder sauber umgebrochen
 
 ### Copy
-- [ ] Typing-Animation startet mit "die nie schlafen."
-- [ ] Zyklus: "die nie schlafen." → "die qualifizieren." → "die skalieren." → "die schneller verkaufen."
-- [ ] "die schneller verkaufen." bleibt permanent, Cursor verschwindet
+- [ ] Typing-Animation startet mit "Systeme, die jagen."
+- [ ] Zyklus: "Systeme, die jagen." → "Systeme, die qualifizieren." → "Systeme, die skalieren." → "Systeme, die schneller verkaufen."
+- [ ] "Systeme, die schneller verkaufen." bleibt permanent, Cursor verschwindet
 - [ ] Subline nennt TigerBot und Voice Agents
 - [ ] Label zeigt "TigerFlow Ecosystem" (nicht mehr "Bereiche")
 - [ ] Services-Chips zeigen: TigerBot · Voice Agents · CRM · Automation · Lead Engine · Webdesign
 
 ### Brand DNA
-- [ ] Sehr subtile diagonale Streifen im Hero-Hintergrund sichtbar (bei dunklem Display / bei näherem Hinsehen)
-- [ ] Flow-Linien erscheinen intermittierend und fließen von links nach rechts
-- [ ] Alle Flow-Linien verschwinden bei `prefers-reduced-motion: reduce`
+- [ ] Subtile diagonale Streifen im Hero-Hintergrund bei direktem Hinsehen erkennbar
+- [ ] Streifen faden zu Rändern aus (Mask wirkt korrekt)
+- [ ] Flow-Linien erscheinen intermittierend und fließen langsam von links nach rechts
+- [ ] Nur 2 Flow-Linien sichtbar (nicht 3)
+- [ ] Flow-Linien wirken ruhig/premium — kein Flackern, kein Cyber-Effekt
+- [ ] Alle Animationen verschwinden bei `prefers-reduced-motion: reduce`
 - [ ] Dashboard-Mockup und Mouse-Parallax funktionieren unverändert
 - [ ] Orange Ambient Glow weiterhin vorhanden
-- [ ] Kein visueller Clash zwischen Streifen, Grid-Linien und Flow-Elementen
 
 ### Regressionscheck (bestehende Features)
-- [ ] Alle anderen Sections optisch unverändert (außer Space Grotesk auf h2)
+- [ ] Alle anderen Sections optisch unverändert (keine Font-Änderung außerhalb Hero)
 - [ ] CTA-Button Hover-Effekt intakt
 - [ ] Navbar Blur-Effekt beim Scrollen intakt
 - [ ] StickyNav erscheint nach Scroll
@@ -362,4 +365,4 @@ Schritt 3 — src/components/GridBg.jsx
 
 ---
 
-*Dieser Plan wartet auf deine Freigabe. Nach OK wird Schritt für Schritt umgesetzt.*
+*Dieser Plan (v2) wartet auf deine Freigabe. Nach OK wird Schritt für Schritt umgesetzt.*
