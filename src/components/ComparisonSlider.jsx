@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { AlertCircle, Zap, Shield, MousePointer2 } from "lucide-react";
+import { useState, useRef } from "react";
+import { AlertCircle, Zap, MousePointer2 } from "lucide-react";
 import { C } from "../theme";
 import { Eyebrow } from "./Eyebrow";
 
@@ -19,6 +18,18 @@ export function ComparisonSlider() {
   const onMouseMove = (e) => handleMove(e.clientX);
   const onTouchMove = (e) => handleMove(e.touches[0].clientX);
 
+  const manualItems = [
+    "Leads manuell abtippen",
+    "E-Mails einzeln beantworten",
+    "Termine per Telefon suchen",
+  ];
+
+  const systemItems = [
+    "Lead-Qualifizierung in Echtzeit",
+    "Automatisierte Antwort-Sequenzen",
+    "Terminbuchung ohne Rückfragen",
+  ];
+
   return (
     <section className="sec" style={{ padding: "96px 48px", maxWidth: "1100px", margin: "0 auto" }}>
       <div style={{ textAlign: "center", marginBottom: "64px" }}>
@@ -29,6 +40,7 @@ export function ComparisonSlider() {
       </div>
 
       <div
+        className="comparison-desktop"
         ref={containerRef}
         onMouseMove={onMouseMove}
         onTouchMove={onTouchMove}
@@ -133,6 +145,62 @@ export function ComparisonSlider() {
             }}
           >
             <MousePointer2 size={20} />
+          </div>
+        </div>
+      </div>
+
+      <div className="comparison-mobile">
+        <div
+          className="comparison-mobile-card"
+          style={{
+            background: "#111117",
+            border: `.5px solid ${C.border}`,
+          }}
+        >
+          <div style={{ color: "#E24B4A", marginBottom: "16px", display: "flex", alignItems: "center", gap: "10px" }}>
+            <AlertCircle size={20} />
+            <span style={{ fontWeight: 700, textTransform: "uppercase", fontSize: "11px", letterSpacing: ".1em" }}>Manueller Prozess</span>
+          </div>
+          <h3 style={{ fontSize: "24px", color: C.textPri, lineHeight: 1.15, marginBottom: "20px" }}>
+            Zeitfressende Routineaufgaben
+          </h3>
+          <div style={{ display: "flex", flexDirection: "column", gap: "14px", color: C.textTer }}>
+            {manualItems.map((item) => (
+              <div key={item} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#E24B4A", flexShrink: 0 }} />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="comparison-mobile-bridge">
+          <span />
+          <div>Wird zu</div>
+          <span />
+        </div>
+
+        <div
+          className="comparison-mobile-card comparison-mobile-card-active"
+          style={{
+            background: "linear-gradient(135deg, #1A0800 0%, #111111 100%)",
+            border: `.5px solid ${C.accentMid}`,
+          }}
+        >
+          <div style={{ color: C.accent, marginBottom: "16px", display: "flex", alignItems: "center", gap: "10px" }}>
+            <Zap size={20} />
+            <span style={{ fontWeight: 700, textTransform: "uppercase", fontSize: "11px", letterSpacing: ".1em" }}>TigerFlow System</span>
+          </div>
+          <h3 style={{ fontSize: "24px", color: C.textPri, lineHeight: 1.15, marginBottom: "20px" }}>
+            Intelligente, skalierbare Systeme
+          </h3>
+          <div style={{ display: "flex", flexDirection: "column", gap: "14px", color: C.textSec }}>
+            {systemItems.map((item) => (
+              <div key={item} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: C.accent, flexShrink: 0, boxShadow: `0 0 10px ${C.accent}` }} />
+                <span>{item}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

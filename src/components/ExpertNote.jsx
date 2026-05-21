@@ -71,6 +71,7 @@ export function ExpertNote() {
             background: "linear-gradient(145deg, rgba(12,7,2,0.98), rgba(7,7,7,0.98) 58%, rgba(18,8,0,0.96))",
             boxShadow: "0 34px 110px rgba(0,0,0,0.72), 0 0 0 1px rgba(255,122,0,0.05) inset",
           }}
+          className="manifesto-shell"
         >
           <img
             src="/tigerflow-mark.png"
@@ -124,6 +125,7 @@ export function ExpertNote() {
                 flexDirection: "column",
                 justifyContent: "space-between",
               }}
+              className="manifesto-quote-card"
             >
               <div
                 aria-hidden="true"
@@ -209,6 +211,7 @@ export function ExpertNote() {
                       padding: "16px",
                       minHeight: 120,
                     }}
+                    className="manifesto-mini-card"
                   >
                     <Icon size={18} color={C.accent} />
                     <div style={{ color: C.textPri, fontSize: 13, fontWeight: 600, marginTop: 14 }}>
@@ -258,6 +261,7 @@ export function ExpertNote() {
                   overflow: "hidden",
                   minHeight: 340,
                 }}
+                className="manifesto-system-panel"
               >
                 <div
                   aria-hidden="true"
@@ -312,6 +316,7 @@ export function ExpertNote() {
                           position: "relative",
                           zIndex: 1,
                         }}
+                        className={`manifesto-flow-step ${i === 1 ? "is-active" : ""}`}
                       >
                         <div
                           style={{
@@ -355,6 +360,7 @@ export function ExpertNote() {
                     background: "linear-gradient(145deg, rgba(255,122,0,0.10), rgba(255,122,0,0.025))",
                     padding: 20,
                   }}
+                  className="manifesto-mini-card manifesto-automation-card"
                 >
                   <Workflow size={20} color={C.accent} />
                   <div style={{ color: C.textPri, fontSize: 14, fontWeight: 700, marginTop: 14 }}>Follow-up Automation</div>
@@ -370,6 +376,7 @@ export function ExpertNote() {
                     background: "rgba(255,255,255,0.025)",
                     padding: 20,
                   }}
+                  className="manifesto-mini-card"
                 >
                   <Bot size={20} color={C.accent} />
                   <div style={{ color: C.textPri, fontSize: 14, fontWeight: 700, marginTop: 14 }}>TigerBot als Mitarbeiter</div>
@@ -396,6 +403,7 @@ export function ExpertNote() {
               position: "relative",
               zIndex: 1,
             }}
+            className="manifesto-cta-bar"
           >
             <div>
               <div style={{ color: C.textPri, fontSize: 18, fontWeight: 700, letterSpacing: "-.02em" }}>
