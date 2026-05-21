@@ -47,7 +47,21 @@ export function StickyNav() {
 
           <div style={{ width: "100%", maxWidth: "1100px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              <div style={{ fontSize: "14px", fontWeight: 600, color: C.textPri, letterSpacing: ".04em" }}>TigerFlow</div>
+              <div style={{ display: "flex", alignItems: "center", gap: "9px" }}>
+                <img
+                  src="/tigerflow-mark.png"
+                  alt=""
+                  aria-hidden="true"
+                  style={{
+                    width: "30px",
+                    height: "24px",
+                    objectFit: "cover",
+                    objectPosition: "center",
+                    borderRadius: "4px",
+                  }}
+                />
+                <div style={{ fontSize: "14px", fontWeight: 600, color: C.textPri, letterSpacing: ".04em" }}>TigerFlow</div>
+              </div>
               <div style={{ width: "1px", height: "16px", background: C.borderEm }} className="hide-mobile" />
               <div style={{ fontSize: "12px", color: C.textSec }} className="hide-mobile">AI Systems & Automation</div>
             </div>

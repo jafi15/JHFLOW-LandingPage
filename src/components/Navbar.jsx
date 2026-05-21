@@ -23,13 +23,33 @@ export function Navbar({ scrolled }) {
     >
       <div
         style={{
-          fontSize: "14px",
-          fontWeight: 600,
-          color: C.textPri,
-          letterSpacing: ".04em",
+          display: "flex",
+          alignItems: "center",
+          gap: "9px",
         }}
       >
-        TigerFlow
+        <img
+          src="/tigerflow-mark.png"
+          alt=""
+          aria-hidden="true"
+          style={{
+            width: "30px",
+            height: "24px",
+            objectFit: "cover",
+            objectPosition: "center",
+            borderRadius: "4px",
+          }}
+        />
+        <div
+          style={{
+            fontSize: "14px",
+            fontWeight: 600,
+            color: C.textPri,
+            letterSpacing: ".04em",
+          }}
+        >
+          TigerFlow
+        </div>
       </div>
       <div
         className="hide-mobile"
