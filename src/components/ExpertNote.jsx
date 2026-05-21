@@ -143,27 +143,6 @@ export function ExpertNote() {
               </div>
             </div>
 
-            {/* Signature SVG */}
-            <motion.svg
-              width="100" height="36" viewBox="0 0 100 36" fill="none"
-              style={{ marginLeft: "8px", opacity: 0.7 }}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <motion.path
-                d="M4 28 C12 20, 20 8, 30 12 C38 15, 32 28, 42 24 C52 20, 58 10, 68 14 C76 17, 72 26, 82 22 C88 20, 94 16, 97 18"
-                stroke={C.accent}
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                variants={{
-                  hidden: { pathLength: 0, opacity: 0 },
-                  visible: { pathLength: 1, opacity: 1, transition: { duration: 1.6, ease: "easeInOut", delay: 0.6 } },
-                }}
-              />
-            </motion.svg>
           </motion.div>
 
         </motion.div>

@@ -11,7 +11,6 @@ import { Process } from "./components/Process";
 import { Results } from "./components/Results";
 import { AutomationCalculator } from "./components/AutomationCalculator";
 import { ExpertNote } from "./components/ExpertNote";
-import { ExitIntent } from "./components/ExitIntent";
 import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
 import "./index.css";
@@ -36,7 +35,6 @@ export default function App() {
     >
       <Navbar scrolled={scrolled} />
       <StickyNav />
-      <ExitIntent />
       <Hero />
       <Problem />
       <ComparisonSlider />
