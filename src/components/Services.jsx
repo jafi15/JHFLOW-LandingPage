@@ -258,7 +258,7 @@ export function Services() {
           )}
 
           {/* ── TigerBot Main Card ── */}
-          <div className={`tigerbot-card ${visible ? "reveal-tb" : ""}`} style={{ gridArea: "tigerbot", position: "relative", zIndex: 2, opacity: 0 }}>
+          <div id="service-tigerbot" className={`tigerbot-card service-anchor ${visible ? "reveal-tb" : ""}`} style={{ gridArea: "tigerbot", position: "relative", zIndex: 2, opacity: 0 }}>
 
             {/* Pulsing outer aura */}
             <div aria-hidden="true" style={{
@@ -370,6 +370,8 @@ export function Services() {
             return (
               <div 
                 key={id} 
+                id={`service-${id}`}
+                className="service-anchor"
                 ref={(el) => { modRefs.current[id] = el; }}
                 style={{ 
                   gridArea, 
