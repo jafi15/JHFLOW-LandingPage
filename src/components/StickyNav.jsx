@@ -45,7 +45,7 @@ export function StickyNav() {
           {/* Progress Bar */}
           <div style={{ position: "absolute", bottom: "-0.5px", left: 0, height: "1px", background: C.accent, width: `${progress}%`, transition: "width 0.1s linear" }} />
 
-          <div style={{ width: "100%", maxWidth: "1100px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ width: "100%", maxWidth: "1100px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "relative" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "9px" }}>
                 <img
@@ -62,8 +62,22 @@ export function StickyNav() {
                 />
                 <div style={{ fontSize: "14px", fontWeight: 600, color: C.textPri, letterSpacing: ".04em" }}>TigerFlow</div>
               </div>
-              <div style={{ width: "1px", height: "16px", background: C.borderEm }} className="hide-mobile" />
-              <div style={{ fontSize: "12px", color: C.textSec }} className="hide-mobile">wir skalieren & sie profitieren</div>
+            </div>
+
+            <div
+              className="hide-mobile"
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+                fontSize: "12px",
+                color: C.textSec,
+                letterSpacing: ".02em",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Wir skalieren. Sie <span style={{ color: C.accent }}>profitieren.</span>
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
