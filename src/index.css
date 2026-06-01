@@ -252,6 +252,9 @@ body {
     justify-content: center;
     min-height: 34px;
   }
+  .hero-scroll-indicator {
+    display: none !important;
+  }
   .grid-3, .grid-2 { grid-template-columns: 1fr !important; }
   .cta-full { width: 100%; justify-content: center; }
   .form-stack { flex-direction: column !important; }

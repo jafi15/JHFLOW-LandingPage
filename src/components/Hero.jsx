@@ -227,7 +227,7 @@ export function Hero() {
           gap: "6px",
           opacity: 0.28,
         }}
-        className="fu5"
+        className="fu5 hero-scroll-indicator"
       >
         <span
           style={{
