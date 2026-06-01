@@ -7,6 +7,7 @@ export function CTASection() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
   const { ref, visible } = useReveal(0.15);
+  const contactEmail = "service@tigerflow.de";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -171,6 +172,35 @@ export function CTASection() {
           }}
         >
           Kein Spam. Kein Newsletter. Nur ein Gespräch.
+        </p>
+        <p
+          style={{
+            fontSize: "13px",
+            color: C.textTer,
+            marginTop: "24px",
+          }}
+        >
+          Oder direkt per E-Mail:{" "}
+          <a
+            href={`mailto:${contactEmail}`}
+            style={{
+              color: C.textSec,
+              textDecoration: "none",
+              borderBottom: `.5px solid ${C.borderEm}`,
+              paddingBottom: "2px",
+              transition: "color .15s,border-color .15s",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.color = C.accent;
+              e.target.style.borderBottomColor = C.accent;
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.color = C.textSec;
+              e.target.style.borderBottomColor = C.borderEm;
+            }}
+          >
+            {contactEmail}
+          </a>
         </p>
       </div>
     </section>
