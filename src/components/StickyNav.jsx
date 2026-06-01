@@ -63,7 +63,7 @@ export function StickyNav() {
                 <div style={{ fontSize: "14px", fontWeight: 600, color: C.textPri, letterSpacing: ".04em" }}>TigerFlow</div>
               </div>
               <div style={{ width: "1px", height: "16px", background: C.borderEm }} className="hide-mobile" />
-              <div style={{ fontSize: "12px", color: C.textSec }} className="hide-mobile">AI Systems & Automation</div>
+              <div style={{ fontSize: "12px", color: C.textSec }} className="hide-mobile">wir skalieren & sie profitieren</div>
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
