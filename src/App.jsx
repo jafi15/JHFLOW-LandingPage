@@ -15,12 +15,14 @@ import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
 import { ImpressumPage } from "./components/ImpressumPage";
 import { DatenschutzPage } from "./components/DatenschutzPage";
+import { AGBPage } from "./components/AGBPage";
 import "./index.css";
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const isImpressum = window.location.pathname === "/impressum";
   const isDatenschutz = window.location.pathname === "/datenschutz";
+  const isAGB = window.location.pathname === "/agb";
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
@@ -32,6 +34,8 @@ export default function App() {
     <ImpressumPage />
   ) : isDatenschutz ? (
     <DatenschutzPage />
+  ) : isAGB ? (
+    <AGBPage />
   ) : (
     <div
       style={{
