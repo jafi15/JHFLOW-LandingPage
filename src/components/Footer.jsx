@@ -41,10 +41,14 @@ export function Footer() {
         >
           {contactEmail}
         </a>
-        {["Impressum", "Datenschutz", "AGB"].map((l) => (
+        {[
+          { label: "Impressum", href: "/impressum" },
+          { label: "Datenschutz", href: "#" },
+          { label: "AGB", href: "#" },
+        ].map(({ label, href }) => (
           <a
-            key={l}
-            href="#"
+            key={label}
+            href={href}
             style={{
               fontSize: "12px",
               color: C.textTer,
@@ -54,7 +58,7 @@ export function Footer() {
             onMouseEnter={(e) => (e.target.style.color = C.textSec)}
             onMouseLeave={(e) => (e.target.style.color = C.textTer)}
           >
-            {l}
+            {label}
           </a>
         ))}
       </div>

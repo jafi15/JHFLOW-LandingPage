@@ -13,10 +13,12 @@ import { AutomationCalculator } from "./components/AutomationCalculator";
 import { ExpertNote } from "./components/ExpertNote";
 import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
+import { ImpressumPage } from "./components/ImpressumPage";
 import "./index.css";
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
+  const isImpressum = window.location.pathname === "/impressum";
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
@@ -24,7 +26,9 @@ export default function App() {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
-  return (
+  return isImpressum ? (
+    <ImpressumPage />
+  ) : (
     <div
       style={{
         fontFamily: "'Inter',-apple-system,sans-serif",
