@@ -14,11 +14,13 @@ import { ExpertNote } from "./components/ExpertNote";
 import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
 import { ImpressumPage } from "./components/ImpressumPage";
+import { DatenschutzPage } from "./components/DatenschutzPage";
 import "./index.css";
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const isImpressum = window.location.pathname === "/impressum";
+  const isDatenschutz = window.location.pathname === "/datenschutz";
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
@@ -28,6 +30,8 @@ export default function App() {
 
   return isImpressum ? (
     <ImpressumPage />
+  ) : isDatenschutz ? (
+    <DatenschutzPage />
   ) : (
     <div
       style={{

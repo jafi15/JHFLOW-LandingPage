@@ -43,7 +43,7 @@ export function Footer() {
         </a>
         {[
           { label: "Impressum", href: "/impressum" },
-          { label: "Datenschutz", href: "#" },
+          { label: "Datenschutz", href: "/datenschutz" },
           { label: "AGB", href: "#" },
         ].map(({ label, href }) => (
           <a
