@@ -40,7 +40,7 @@ const sections = [
   {
     title: "8. Betreuung, Wartung und Retainer",
     content:
-      "Betreuung, Wartung und Retainer umfassen nur die ausdrücklich vereinbarten Leistungen. Nicht umfasst sind unbegrenzte Neuentwicklungen, umfassende Designänderungen, neue Funktionsbereiche oder Leistungen außerhalb des vereinbarten Umfangs.\n\nSofern nicht anders vereinbart, laufen Retainer monatlich und können mit einer Frist von 14 Tagen zum Monatsende gekündigt werden. Nicht genutzte Stunden oder Leistungskontingente verfallen zum Monatsende, sofern nicht ausdrücklich etwas anderes vereinbart wurde.\n\nKonkrete Reaktionszeiten oder Service-Level gelten nur, wenn sie schriftlich vereinbart wurden.",
+      "Betreuung, Wartung und Retainer umfassen nur die ausdrücklich vereinbarten Leistungen. Nicht umfasst sind unbegrenzte Neuentwicklungen, umfassende Designänderungen, neue Funktionsbereiche oder Leistungen außerhalb des vereinbarten Umfangs.\n\nSofern nicht anders vereinbart, haben laufende Betreuungs-, Wartungs- und Retainer-Leistungen eine Mindestlaufzeit von drei Monaten. Nach Ablauf der Mindestlaufzeit verlängert sich der Vertrag jeweils um einen weiteren Monat, wenn er nicht mit einer Frist von 14 Tagen vor Ende der jeweiligen Laufzeit gekündigt wird. Nicht genutzte Stunden oder Leistungskontingente verfallen zum Monatsende, sofern nicht ausdrücklich etwas anderes vereinbart wurde.\n\nKonkrete Reaktionszeiten oder Service-Level gelten nur, wenn sie schriftlich vereinbart wurden.",
   },
   {
     title: "9. Nutzungsrechte an Websites, Designs und Automationen",
