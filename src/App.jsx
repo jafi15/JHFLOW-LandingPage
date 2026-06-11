@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { C } from "./theme";
 import { Navbar } from "./components/Navbar";
 import { StickyNav } from "./components/StickyNav";
@@ -31,11 +32,20 @@ export default function App() {
   }, []);
 
   return isImpressum ? (
-    <ImpressumPage />
+    <>
+      <ImpressumPage />
+      <Analytics />
+    </>
   ) : isDatenschutz ? (
-    <DatenschutzPage />
+    <>
+      <DatenschutzPage />
+      <Analytics />
+    </>
   ) : isAGB ? (
-    <AGBPage />
+    <>
+      <AGBPage />
+      <Analytics />
+    </>
   ) : (
     <div
       style={{
@@ -58,6 +68,7 @@ export default function App() {
       <ExpertNote />
       <CTASection />
       <Footer />
+      <Analytics />
     </div>
   );
 }
