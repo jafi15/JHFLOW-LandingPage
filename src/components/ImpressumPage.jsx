@@ -4,9 +4,6 @@ import { Footer } from "./Footer";
 const rows = [
   ["Angaben gemäß § 5 DDG", "Jafar Hamzeh\nEinzelunternehmen\nRendsburger Straße 22\n25746 Heide\nDeutschland"],
   ["Kontakt", "E-Mail: service@tigerflow.de"],
-  ["Umsatzsteuer-ID", "Wird ergänzt, sobald vorhanden."],
-  ["Registereintrag", "Kein Registereintrag vorhanden."],
-  ["Aufsichtsbehörde", "Keine zuständige Aufsichtsbehörde angegeben."],
   ["Verantwortlich für den Inhalt", "Jafar Hamzeh\nRendsburger Straße 22\n25746 Heide"],
 ];
 
