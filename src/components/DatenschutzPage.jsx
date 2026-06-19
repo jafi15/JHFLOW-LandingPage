@@ -35,7 +35,7 @@ const sections = [
   {
     title: "7. Cookies und Tracking",
     content:
-      "Derzeit setzen wir keine Analyse- oder Marketing-Tracking-Tools wie Google Analytics, Meta Pixel oder TikTok Pixel ein. Es werden aktuell keine nicht notwendigen Tracking-Cookies zu Analyse- oder Werbezwecken gesetzt.\n\nSollten zukünftig Analyse- oder Marketing-Tools eingesetzt werden, erfolgt dies nur, soweit eine wirksame Einwilligung vorliegt oder eine andere gesetzliche Grundlage besteht. Diese Datenschutzerklärung wird dann entsprechend aktualisiert.",
+      "Wir nutzen Vercel Web Analytics, um allgemeine Informationen zur Nutzung dieser Website zu erhalten, zum Beispiel Seitenaufrufe, Referrer, Gerätekategorien und technische Nutzungsdaten. Die Auswertung hilft uns, die Website technisch und inhaltlich zu verbessern.\n\nEs werden keine Marketing-Tracking-Tools wie Google Analytics, Meta Pixel oder TikTok Pixel eingesetzt. Nicht notwendige Marketing-Cookies werden nicht gesetzt.\n\nRechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in der Analyse und Verbesserung unserer Website.",
   },
   {
     title: "8. Terminbuchung und TigerBot",

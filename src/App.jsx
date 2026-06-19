@@ -16,6 +16,7 @@ import { Footer } from "./components/Footer";
 import { ImpressumPage } from "./components/ImpressumPage";
 import { DatenschutzPage } from "./components/DatenschutzPage";
 import { AGBPage } from "./components/AGBPage";
+import { Analytics } from "@vercel/analytics/react";
 import "./index.css";
 
 export default function App() {
@@ -30,34 +31,39 @@ export default function App() {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
-  return isImpressum ? (
-    <ImpressumPage />
-  ) : isDatenschutz ? (
-    <DatenschutzPage />
-  ) : isAGB ? (
-    <AGBPage />
-  ) : (
-    <div
-      style={{
-        fontFamily: "'Inter',-apple-system,sans-serif",
-        background: C.pageBg,
-        color: C.textPri,
-        minHeight: "100vh",
-      }}
-    >
-      <Navbar scrolled={scrolled} />
-      <StickyNav />
-      <Hero />
-      <Problem />
-      <ComparisonSlider />
-      <Services />
-      <DiagnosisForm />
-      <Process />
-      <Results />
-      <AutomationCalculator />
-      <ExpertNote />
-      <CTASection />
-      <Footer />
-    </div>
+  return (
+    <>
+      {isImpressum ? (
+        <ImpressumPage />
+      ) : isDatenschutz ? (
+        <DatenschutzPage />
+      ) : isAGB ? (
+        <AGBPage />
+      ) : (
+        <div
+          style={{
+            fontFamily: "'Inter',-apple-system,sans-serif",
+            background: C.pageBg,
+            color: C.textPri,
+            minHeight: "100vh",
+          }}
+        >
+          <Navbar scrolled={scrolled} />
+          <StickyNav />
+          <Hero />
+          <Problem />
+          <ComparisonSlider />
+          <Services />
+          <DiagnosisForm />
+          <Process />
+          <Results />
+          <AutomationCalculator />
+          <ExpertNote />
+          <CTASection />
+          <Footer />
+        </div>
+      )}
+      <Analytics />
+    </>
   );
 }
